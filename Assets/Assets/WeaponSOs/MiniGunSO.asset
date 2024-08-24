@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c073cfe0804ecd46975fadd429cd465, type: 3}
+  m_Name: MiniGunSO
+  m_EditorClassIdentifier: 
+  damage: 2
+  firerate: 10
+  visual: {fileID: 5226409373464607581, guid: ff8bebfcad398804182baad4814bf9ed, type: 3}
+  upgradeSO: {fileID: 11400000, guid: b5b908261b0a4b146b9762bea0927900, type: 2}

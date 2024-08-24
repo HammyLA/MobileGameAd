@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c073cfe0804ecd46975fadd429cd465, type: 3}
+  m_Name: AssaultRifleSO
+  m_EditorClassIdentifier: 
+  damage: 2
+  firerate: 5
+  visual: {fileID: 4905202702470227804, guid: 32a248b8e9cf6724ca39f49eaee701f7, type: 3}
+  upgradeSO: {fileID: 11400000, guid: 5b33310e76d84514b85f477a44c3f9ee, type: 2}
