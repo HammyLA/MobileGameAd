@@ -18,7 +18,7 @@ public class UpgradeManager : MonoBehaviour
 
     public bool UpgradePlayer()
     {
-        if (GameManager.Instance.GetCoinAmount() >= playerUpgradeCost && PlayerManager.Instance.GetPlayerPFList().Length <= 8)
+        if (GameManager.Instance.GetCoinAmount() >= playerUpgradeCost && PlayerManager.Instance.GetPlayerPFList().Length < 8)
         {
             GameManager.Instance.SetCoinAmount(GameManager.Instance.GetCoinAmount() - playerUpgradeCost);
             PlayerManager.Instance.AddPlayer();

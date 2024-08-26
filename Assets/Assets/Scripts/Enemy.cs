@@ -51,12 +51,10 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
-        Debug.Log(health);
-        Debug.Log(GetComponentInChildren<EnemyAnimator>());
         if (health <= 0)
         {
-            isDead = true;
             Destroy(GetComponent<BoxCollider>());
+            isDead = true;
             GetComponentInChildren<EnemyAnimator>().TriggerDeath();
             GameManager.Instance.IncrementAmountDefeated();
             onKill?.Invoke(this, EventArgs.Empty);

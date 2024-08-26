@@ -15,7 +15,7 @@ public class UpgradeMenuUI : MonoBehaviour
     [SerializeField] private Image upgradeIcon;
     [SerializeField] private TextMeshProUGUI upgradePlayerCost;
     [SerializeField] private TextMeshProUGUI upgradeGunCostText;
-
+    [SerializeField] private TextMeshProUGUI coinAmountText;
     private bool playerIsMaxed;
     private bool weaponIsMaxed;
     private bool isPaused;
@@ -35,32 +35,43 @@ public class UpgradeMenuUI : MonoBehaviour
 
         upgradePlayerButton.onClick.AddListener(() =>
         {
-            if (UpgradeManager.instance.UpgradePlayer() && playerUpgradeBar.GetComponentsInChildren<Image>().Length < maxUpgrade)
+            if (!playerIsMaxed)
             {
-                Instantiate(upgradeIcon, playerUpgradeBar);
-                Debug.Log(playerUpgradeBar.GetComponentsInChildren<Image>().Length.ToString());
-                SetPlayerCosts();
-            }
-            else if (playerUpgradeBar.GetComponentsInChildren<Image>().Length == maxUpgrade)
-            {
-                Instantiate(upgradeIcon, playerUpgradeBar);
-                playerIsMaxed = true;
-                SetPlayerCosts();
+                if (playerUpgradeBar.GetComponentsInChildren<Image>().Length == maxUpgrade)
+                {
+                    playerIsMaxed = true;
+                    UpgradeManager.instance.UpgradePlayer();
+                    Instantiate(upgradeIcon, playerUpgradeBar);
+                    SetPlayerCosts();
+                }
+                else if (UpgradeManager.instance.UpgradePlayer())
+                {
+                    Instantiate(upgradeIcon, playerUpgradeBar);
+                    Debug.Log(playerUpgradeBar.GetComponentsInChildren<Image>().Length.ToString());
+                    SetPlayerCosts();
+                }
+                SetCoinText();
             }
         });
 
         upgradeWeaponButton.onClick.AddListener(() =>
         {
-            if (UpgradeManager.instance.UpgradeGun() && weaponUpgradeBar.GetComponentsInChildren<Image>().Length < maxUpgrade)
+            if (!weaponIsMaxed)
             {
-                Instantiate(upgradeIcon, weaponUpgradeBar);
-                SetWeaponCosts();
-            }
-            else if (UpgradeManager.instance.UpgradeGun() && weaponUpgradeBar.GetComponentsInChildren<Image>().Length == maxUpgrade)
-            {
-                Instantiate(upgradeIcon, weaponUpgradeBar);
-                weaponIsMaxed = true;
-                SetWeaponCosts();
+                if (weaponUpgradeBar.GetComponentsInChildren<Image>().Length == maxUpgrade)
+                {
+                    weaponIsMaxed = true;
+                    UpgradeManager.instance.UpgradeGun();
+                    Instantiate(upgradeIcon, weaponUpgradeBar);
+                    SetWeaponCosts();
+                }
+                else if (UpgradeManager.instance.UpgradeGun())
+                {
+                    Instantiate(upgradeIcon, weaponUpgradeBar);
+                    Debug.Log(weaponUpgradeBar.GetComponentsInChildren<Image>().Length.ToString());
+                    SetWeaponCosts();
+                }
+                SetCoinText();
             }
         });
 
@@ -81,6 +92,7 @@ public class UpgradeMenuUI : MonoBehaviour
         }
         else
         {
+            SetCoinText();
             Show();
             isPaused = true;
         }
@@ -100,6 +112,11 @@ public class UpgradeMenuUI : MonoBehaviour
     {
         SetPlayerCosts();
         SetWeaponCosts();
+    }
+
+    private void SetCoinText()
+    {
+        coinAmountText.text = "Coins: " + GameManager.Instance.GetCoinAmount();
     }
 
     private void SetPlayerCosts()

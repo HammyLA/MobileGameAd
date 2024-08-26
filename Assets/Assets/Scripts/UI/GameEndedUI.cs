@@ -14,11 +14,6 @@ public class GameEndedUI : MonoBehaviour
     {
         Hide();
 
-        restartButton.onClick.AddListener(() =>
-        {
-            Loader.Load(Loader.Scene.SampleScene);
-        });
-
         GameEndManager.instance.OnGameEnd += GameEndManager_OnGameEnd;
     }
 

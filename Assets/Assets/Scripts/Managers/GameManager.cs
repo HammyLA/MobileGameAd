@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public event EventHandler OnCoinChange;
 
     private int amountDefeated;
-    private int coinAmount;
+    [SerializeField] private int coinAmount;
 
     private void Awake()
     {
