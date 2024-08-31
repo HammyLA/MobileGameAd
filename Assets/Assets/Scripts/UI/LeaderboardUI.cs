@@ -10,11 +10,17 @@ public class LeaderboardUI : MonoBehaviour
     [SerializeField] private List<TextMeshProUGUI> scores;
 
     private string publicKey = "b138d8fde713cf867c9cd2decd6daebd7cd61fd9704ae3375c5d880f0d3c4b44";
+
+    private void Start()
+    {
+        GetLeaderboard();
+    }
     public void GetLeaderboard()
     {
         LeaderboardCreator.GetLeaderboard(publicKey, ((msg) =>
         {
-            for (int i = 0; i < names.Count; i++)
+            int loopLength = (msg.Length < names.Count) ? msg.Length : names.Count;
+            for (int i = 0; i < loopLength; i++)
             {
                 names[i].text = msg[i].Username;
                 scores[i].text = msg[i].Score.ToString();

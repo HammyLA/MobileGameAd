@@ -8,6 +8,7 @@ public class GameEndManager : MonoBehaviour
 {
     public event EventHandler OnGameEnd;
     public static GameEndManager instance {  get; private set; }
+    public bool isDead;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class GameEndManager : MonoBehaviour
 
     private void Start()
     {
+        isDead = false;
         Enemy.onReachedEnd += Enemy_onReachedEnd;
     }
 
@@ -29,6 +31,7 @@ public class GameEndManager : MonoBehaviour
         if (PlayerManager.Instance.GetPlayerHealth() <= 0)
         {
             OnGameEnd?.Invoke(this, EventArgs.Empty);
+            isDead = true;
         }
     }
 

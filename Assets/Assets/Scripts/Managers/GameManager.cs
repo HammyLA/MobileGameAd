@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     {
         int coinChance = UnityEngine.Random.Range(1, 100);
 
-        if (coinChance >= 70)
+        if (coinChance >= 70 && !GameEndManager.instance.isDead)
         {
             coinAmount++;
             OnCoinChange?.Invoke(this, EventArgs.Empty);
@@ -58,7 +58,11 @@ public class GameManager : MonoBehaviour
 
     public void IncrementAmountDefeated()
     {
-        amountDefeated++;
+        if (!GameEndManager.instance.isDead)
+        {
+            amountDefeated++;
+        }
+        Debug.Log(GetAmountDefeated());
     }
 
     public void PauseGame(bool isPaused)
